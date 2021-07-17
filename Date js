@@ -1,0 +1,42 @@
+//tinh ngay gio JS
+var startDateTime = new Date(2021,6,17,15,59,59,0); 
+
+// YYYY (M-1) D H m s ms (start time and date from DB)
+var startStamp = startDateTime.getTime();
+console.log(startDateTime);
+
+var newDate = new Date();
+var newStamp = newDate.getTime();
+console.log(newDate);
+
+var timer; // for storing the interval (to stop or pause later if needed)
+
+function updateClock() {
+    newDate = new Date();
+    newStamp = newDate.getTime();
+    var diff = Math.round((newStamp-startStamp)/1000);
+    
+    var d = Math.floor(diff/(24*60*60)); /* though I hope she won't be working for consecutive days :) */
+    diff = diff-(d*24*60*60);
+    var h = Math.floor(diff/(60*60));
+    diff = diff-(h*60*60);
+    var m = Math.floor(diff/(60));
+    diff = diff-(m*60);
+    var s = diff;
+    
+   return (d+" day(s), "+h+" hour(s), "+m+" minute(s), "+s+" second(s) working")
+}
+
+console.log(updateClock());
+// end tinh ngay gio JS
+
+
+// string to date 
+export const stringToDate = val => {
+  return new Date(val).toLocaleString('vi-VN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+};
+// end string to date 
